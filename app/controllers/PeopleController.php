@@ -11,6 +11,8 @@ class PeopleController extends \BaseController {
   {
     $people = People::all();
 
+    return View::make('people.index')->with(array('people' => $people));
+
   }
 
 

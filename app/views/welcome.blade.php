@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
-  @section('title')
-    Laravel PHP Framework
-  @stop
+@section('title')
+  welcome
+@stop
 
 
 @section('content')
@@ -19,6 +19,10 @@
       </div>
 
       <input type="submit" val="submit">
+
+      <div class="people-link">
+        <a href="{{route('people')}}">Y'alls Inputs</a>
+      </div>
 
     </form>
   </div>

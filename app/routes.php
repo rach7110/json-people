@@ -16,6 +16,12 @@ Route::get('/', function()
   return View::make('welcome');
 });
 
+Route::get('people', array(
+  'as' => 'people', 
+  'uses' => 'PeopleController@index'
+));
+
+
 Route::post('people', array(
   'as' => 'people', 
   'uses' => 'PeopleController@store'
