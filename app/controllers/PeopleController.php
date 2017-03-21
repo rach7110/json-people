@@ -1,6 +1,6 @@
 <?php
 
-class PersonsController extends \BaseController {
+class PeopleController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,7 @@ class PersonsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$people = People::all();
 	}
 
 
@@ -32,21 +32,16 @@ class PersonsController extends \BaseController {
 	public function store()
 	{
 		//VALIDATE USER INPUT IS JSON
-		$people = json_decode(Input::get('people'));
+		$people_json = json_decode(Input::get('people'));
 
-		if( !$people )
+		if( !$people_json )
 		{
 			return Redirect::to('/')->with('message', "Oops! It appears you didn't enter proper json format. Here's a quick reference guide: <a href='http://secretgeek.net/json_3mins' target='_blank'>3-Minute Guide to Json</a>")->with('alert-class', "alert-warning");
 		}
 
-			//do some logic
-		// echo "<pre>";
-		// print_r($people->data[0]);
-		// echo "</pre>";
-    // $number_persons = count($people->data);
-    // echo "You submitted " . $number_persons . " people.";
-
-    $persons = $people->data;
+    
+    // this should be a fucntion in the People model
+    $persons = $people_json->data;
     $emails = [];
 
     foreach ($persons as $person) {
@@ -54,7 +49,19 @@ class PersonsController extends \BaseController {
     }
 
     $email_list = implode(',', $emails);
-    var_dump($email_list);
+    // end function
+
+    // this should be a fucntion in the People model
+
+    // Sort the array using a user defined function
+    usort($persons, function($a, $b) { 
+      return $a->age > $b->age ? -1 : 1; //Compare ages
+    });
+
+    print_r($persons);   
+
+
+    //
 
 
 	}

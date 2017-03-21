@@ -18,5 +18,5 @@ Route::get('/', function()
 
 Route::post('people', array(
   'as' => 'people', 
-  'uses' => 'PersonsController@store'
+  'uses' => 'PeopleController@store'
 ));
