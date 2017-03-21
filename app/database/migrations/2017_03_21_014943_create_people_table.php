@@ -12,11 +12,12 @@ class CreatePeopleTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('people', function($table)
+		Schema::create('people', function($table)
 		{
     	$table->increments('id');
     	$table->string('emails');
     	$table->string('age_sorted');
+    	$table->timestamps();
     });
 	}
 
